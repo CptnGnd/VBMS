@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>VBMS.Infrastructure.Shared</RootNamespace>
+    <AssemblyName>VBMS.Infrastructure.Shared</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="3.0.0" />
+    <PackageReference Include="MimeKit" Version="3.0.0" />
+  </ItemGroup>
+</Project>

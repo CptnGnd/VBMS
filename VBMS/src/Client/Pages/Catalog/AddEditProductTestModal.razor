@@ -1,0 +1,105 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditProductTestModal> _localizer
+
+<EditForm Model="@AddEditProductTestModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditProductTestModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add ProductTest"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update ProductTest"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @if (AddEditProductTestModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditProductTestModel.Id)" @bind-Value="AddEditProductTestModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditProductTestModel.Name)" @bind-Value="AddEditProductTestModel.Name" Label="@_localizer["Name"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditProductTestModel.Description)" @bind-Value="AddEditProductTestModel.Description" Label="@_localizer["Description"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["BrandTest"]" For="@(() => AddEditProductTestModel.BrandTestId)" @bind-Value="AddEditProductTestModel.BrandTestId" ResetValueOnEmptyText="true" SearchFunc="@SearchBrandTests" Variant="Variant.Filled" ToStringFunc="@(i => _brandTests.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditProductTestModel.Rate)" @bind-Value="AddEditProductTestModel.Rate" Label="@_localizer["Rate"]" />
+                </MudItem>
+                @if (AddEditProductTestModel.Id == 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField For="@(() => AddEditProductTestModel.Barcode)" @bind-Value="AddEditProductTestModel.Barcode" Label="@_localizer["Barcode"]" />
+                    </MudItem>
+                }
+                else
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditProductTestModel.Barcode)" @bind-Value="AddEditProductTestModel.Barcode" Label="@_localizer["Barcode"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudItem>
+                        <MudAvatar Image="@(AddEditProductTestModel.ImageDataURL)" Square="true" Style="height: auto; width: auto; max-height: 100%"> </MudAvatar>
+                    </MudItem>
+                    <MudItem>
+                        <InputFile id="fileInput" hidden OnChange="UploadFiles" />
+                        <div>
+                            <MudButton HtmlTag="label"
+                                       Variant="Variant.Text"
+                                       Color="Color.Primary"
+                                       Size="Size.Small"
+                                       StartIcon="@Icons.Filled.CloudUpload"
+                                       for="fileInput">
+                                @_localizer["Upload"]
+                            </MudButton>
+                            @if (!string.IsNullOrEmpty(AddEditProductTestModel.ImageDataURL))
+                            {
+                                <MudButton Variant="Variant.Text"
+                                           Color="Color.Info"
+                                           StartIcon="@Icons.Filled.RemoveRedEye"
+                                           Size="Size.Small"
+                                           Link="@(AddEditProductTestModel.ImageDataURL)" Target="_blank">
+                                    @_localizer["View"]
+                                </MudButton>
+                                <MudButton Variant="Variant.Text"
+                                           Color="Color.Error"
+                                           StartIcon="@Icons.Filled.Delete"
+                                           Size="Size.Small"
+                                           OnClick="DeleteAsync">
+                                    @_localizer["Delete"]
+                                </MudButton>
+                            }
+                        </div>
+                    </MudItem>
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditProductTestModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

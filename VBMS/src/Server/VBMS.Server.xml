@@ -1,0 +1,564 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VBMS.Server</name>
+    </assembly>
+    <members>
+        <member name="T:VBMS.Server.Controllers.BaseApiController`1">
+            <summary>
+            Abstract BaseApi Controller Class
+            </summary>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Communication.ChatsController.GetChatHistoryAsync(System.String)">
+            <summary>
+            Get user wise chat history
+            </summary>
+            <param name="contactId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Communication.ChatsController.GetChatUsersAsync">
+            <summary>
+            get available users
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Communication.ChatsController.SaveMessageAsync(VBMS.Application.Models.Chat.ChatHistory{VBMS.Application.Interfaces.Chat.IChatUser})">
+            <summary>
+            Save Chat Message
+            </summary>
+            <param name="message"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.AccountController.UpdateProfile(VBMS.Application.Requests.Identity.UpdateProfileRequest)">
+            <summary>
+            Update Profile
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.AccountController.ChangePassword(VBMS.Application.Requests.Identity.ChangePasswordRequest)">
+            <summary>
+            Change Password
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.AccountController.GetProfilePictureAsync(System.String)">
+            <summary>
+            Get Profile picture by Id
+            </summary>
+            <param name="userId"></param>
+            <returns>Status 200 OK </returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.AccountController.UpdateProfilePictureAsync(VBMS.Application.Requests.Identity.UpdateProfilePictureRequest)">
+            <summary>
+            Update Profile Picture
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.TokenController.Get(VBMS.Application.Requests.Identity.TokenRequest)">
+            <summary>
+            Get Token (Email, Password)
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.TokenController.Refresh(VBMS.Application.Requests.Identity.RefreshTokenRequest)">
+            <summary>
+            Refresh Token
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.GetAll">
+            <summary>
+            Get User Details
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.GetById(System.String)">
+            <summary>
+            Get User By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.GetRolesAsync(System.String)">
+            <summary>
+            Get User Roles By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.UpdateRolesAsync(VBMS.Application.Requests.Identity.UpdateUserRolesRequest)">
+            <summary>
+            Update Roles for User
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.RegisterAsync(VBMS.Application.Requests.Identity.RegisterRequest)">
+            <summary>
+            Register a User
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.ConfirmEmailAsync(System.String,System.String)">
+            <summary>
+            Confirm Email
+            </summary>
+            <param name="userId"></param>
+            <param name="code"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.ToggleUserStatusAsync(VBMS.Application.Requests.Identity.ToggleUserStatusRequest)">
+            <summary>
+            Toggle User Status (Activate and Deactivate)
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.ForgotPasswordAsync(VBMS.Application.Requests.Identity.ForgotPasswordRequest)">
+            <summary>
+            Forgot Password
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.ResetPasswordAsync(VBMS.Application.Requests.Identity.ResetPasswordRequest)">
+            <summary>
+            Reset Password
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Identity.UserController.Export(System.String)">
+            <summary>
+            Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.RoleClaimController.GetAll">
+            <summary>
+            Get All Role Claims(e.g. ProductTest Create Permission)
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.RoleClaimController.GetAllByRoleId(System.String)">
+            <summary>
+            Get All Role Claims By Id
+            </summary>
+            <param name="roleId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.RoleClaimController.Post(VBMS.Application.Requests.Identity.RoleClaimRequest)">
+            <summary>
+            Add a Role Claim
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK </returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.RoleClaimController.Delete(System.Int32)">
+            <summary>
+            Delete a Role Claim
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.RoleController.GetAll">
+            <summary>
+            Get All Roles (basic, admin etc.)
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.RoleController.Post(VBMS.Application.Requests.Identity.RoleRequest)">
+            <summary>
+            Add a Role
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.RoleController.Delete(System.String)">
+            <summary>
+            Delete a Role
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.RoleController.GetPermissionsByRoleId(System.String)">
+            <summary>
+            Get Permissions By Role Id
+            </summary>
+            <param name="roleId"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.RoleController.Update(VBMS.Application.Requests.Identity.PermissionRequest)">
+            <summary>
+            Edit a Role Claim
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.AuditsController.GetUserTrailsAsync">
+            <summary>
+            Get Current User Audit Trails
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.AuditsController.ExportExcel(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Search Audit Trails and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <param name="searchInOldValues"></param>
+            <param name="searchInNewValues"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="T:VBMS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4">
+            <summary>
+            Abstract Extended Attributes Controller Class
+            </summary>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetAll">
+            <summary>
+            Get All Entity Extended Attributes
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetAllByEntityId(`1)">
+            <summary>
+            Get All Entity Extended Attributes by entity id
+            </summary>
+            <param name="entityId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetById(`0)">
+            <summary>
+            Get Entity Extended Attribute By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Post(VBMS.Application.Features.ExtendedAttributes.Commands.AddEdit.AddEditExtendedAttributeCommand{`0,`1,`2,`3})">
+            <summary>
+            Create/Update a Entity Extended Attribute
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Delete(`0)">
+            <summary>
+            Delete a Entity Extended Attribute
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Export(System.String,`1,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Search Entity Extended Attribute and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <param name="entityId"></param>
+            <param name="includeEntity"></param>
+            <param name="onlyCurrentGroup"></param>
+            <param name="currentGroup"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.Misc.DocumentsController.GetAll(System.Int32,System.Int32,System.String)">
+            <summary>
+            Get All Documents
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.Misc.DocumentsController.GetById(System.Int32)">
+            <summary>
+            Get Document By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.Misc.DocumentsController.Post(VBMS.Application.Features.Documents.Commands.AddEdit.AddEditDocumentCommand)">
+            <summary>
+            Add/Edit Document
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.Misc.DocumentsController.Delete(System.Int32)">
+            <summary>
+            Delete a Document
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.Misc.DocumentTypesController.GetAll">
+            <summary>
+            Get All Document Types
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.Misc.DocumentTypesController.GetById(System.Int32)">
+            <summary>
+            Get Document Type By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.Misc.DocumentTypesController.Post(VBMS.Application.Features.DocumentTypes.Commands.AddEdit.AddEditDocumentTypeCommand)">
+            <summary>
+            Create/Update a Document Type
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.Misc.DocumentTypesController.Delete(System.Int32)">
+            <summary>
+            Delete a Document Type
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.Misc.DocumentTypesController.Export(System.String)">
+            <summary>
+            Search Document Types and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.Utilities.PreferencesController.ChangeLanguageAsync(System.String)">
+            <summary>
+            Change Language Preference
+            </summary>
+            <param name="languageCode"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BrandTestsController.GetAll">
+            <summary>
+            Get All BrandTests
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BrandTestsController.GetById(System.Int32)">
+            <summary>
+            Get a BrandTest By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BrandTestsController.Post(VBMS.Application.Features.BrandTests.Commands.AddEdit.AddEditBrandTestCommand)">
+            <summary>
+            Create/Update a BrandTest
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BrandTestsController.Delete(System.Int32)">
+            <summary>
+            Delete a BrandTest
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BrandTestsController.Export(System.String)">
+            <summary>
+            Search BrandTests and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.ProductTestsController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All ProductTests
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.ProductTestsController.GetProductTestImageAsync(System.Int32)">
+            <summary>
+            Get a ProductTest Image by Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.ProductTestsController.Post(VBMS.Application.Features.ProductTests.Commands.AddEdit.AddEditProductTestCommand)">
+            <summary>
+            Add/Edit a ProductTest
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.ProductTestsController.Delete(System.Int32)">
+            <summary>
+            Delete a ProductTest
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.ProductTestsController.Export(System.String)">
+            <summary>
+            Search ProductTests and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.DashboardController.GetDataAsync">
+            <summary>
+            Get Dashboard Data
+            </summary>
+            <returns>Status 200 OK </returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnersController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Partners
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnersController.GetPartnerImageAsync(System.Int32)">
+            <summary>
+            Get a Partner Image by Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnersController.Post(VBMS.Application.Features.vbms.partner.partner.Commands.AddEdit.AddEditPartnerCommand)">
+            <summary>
+            Add/Edit a Partner
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnersController.Delete(System.Int32)">
+            <summary>
+            Delete a Partner
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnersController.Export(System.String)">
+            <summary>
+            Search Partners and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnerTypesController.GetAll">
+            <summary>
+            Get All PartnerTypes
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnerTypesController.GetById(System.Int32)">
+            <summary>
+            Get a PartnerType By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnerTypesController.Post(VBMS.Application.Features.vbms.partner.partnerType.Commands.AddEdit.AddEditPartnerTypeCommand)">
+            <summary>
+            Create/Update a PartnerType
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnerTypesController.Delete(System.Int32)">
+            <summary>
+            Delete a PartnerType
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnerTypesController.Export(System.String)">
+            <summary>
+            Search PartnerTypes and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehiclesController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Vehicles
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehiclesController.GetVehicleImageAsync(System.Int32)">
+            <summary>
+            Get a Vehicle Image by Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehiclesController.Post(VBMS.Application.Features.vbms.vehicle.vehicle.Commands.AddEdit.AddEditVehicleCommand)">
+            <summary>
+            Add/Edit a Vehicle
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehiclesController.Delete(System.Int32)">
+            <summary>
+            Delete a Vehicle
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehiclesController.Export(System.String)">
+            <summary>
+            Search Vehicles and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypesController.GetAll">
+            <summary>
+            Get All VehicleTypes
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypesController.GetById(System.Int32)">
+            <summary>
+            Get a VehicleType By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypesController.Post(VBMS.Application.Features.vbms.vehicle.vehicleType.Commands.AddEdit.AddEditVehicleTypeCommand)">
+            <summary>
+            Create/Update a VehicleType
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypesController.Delete(System.Int32)">
+            <summary>
+            Delete a VehicleType
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypesController.Export(System.String)">
+            <summary>
+            Search VehicleTypes and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
