@@ -526,6 +526,37 @@
             <param name="searchString"></param>
             <returns>Status 200 OK</returns>
         </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypeAttributesController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All VehicleTypeAttributes
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypeAttributesController.Post(VBMS.Application.Features.VehicleTypeAttributes.Commands.AddEdit.AddEditVehicleTypeAttributeCommand)">
+            <summary>
+            Add/Edit a VehicleTypeAttribute
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypeAttributesController.Delete(System.Int32)">
+            <summary>
+            Delete a VehicleTypeAttribute
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypeAttributesController.Export(System.String)">
+            <summary>
+            Search VehicleTypeAttributes and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
         <member name="M:VBMS.Server.Controllers.v1.vbms.vehicle.VehicleTypesController.GetAll">
             <summary>
             Get All VehicleTypes

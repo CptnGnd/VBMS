@@ -94,6 +94,12 @@
             <MudNavLink Href="/vbms/vehicleTypes" Icon="@Icons.Material.Outlined.CallToAction">
                 @_localizer["VehicleTypes"]
             </MudNavLink>
+        }  
+        @if (_canViewProductTests)
+        {
+            <MudNavLink Href="/vbms/vehicleTypeAttributes" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["VehicleTypeAttributes"]
+            </MudNavLink>
         }
         @if (_canViewBrandTests)
         {
