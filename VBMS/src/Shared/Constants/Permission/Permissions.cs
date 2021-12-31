@@ -15,6 +15,15 @@ namespace VBMS.Shared.Constants.Permission
             public const string Export = "Permissions.Vehicles.Export";
             public const string Search = "Permissions.Vehicles.Search";
         }
+        public static class VehicleTypeAttributes
+        {
+            public const string View = "Permissions.VehicleTypeAttributes.View";
+            public const string Create = "Permissions.VehicleTypeAttributes.Create";
+            public const string Edit = "Permissions.VehicleTypeAttributes.Edit";
+            public const string Delete = "Permissions.VehicleTypeAttributes.Delete";
+            public const string Export = "Permissions.VehicleTypeAttributes.Export";
+            public const string Search = "Permissions.VehicleTypeAttributes.Search";
+        }
         public static class Partners
         {
             public const string View = "Permissions.Partners.View";
