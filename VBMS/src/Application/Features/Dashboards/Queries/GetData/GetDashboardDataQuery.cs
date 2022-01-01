@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using VBMS.Domain.Entities.ExtendedAttributes;
 using VBMS.Domain.Entities.Misc;
 using Microsoft.Extensions.Localization;
+using VBMS.Domain.Entities.vbms.partners;
+using VBMS.Domain.Entities.vbms.vehicles;
 
 namespace VBMS.Application.Features.Dashboards.Queries.GetData
 {
@@ -38,6 +40,8 @@ namespace VBMS.Application.Features.Dashboards.Queries.GetData
         {
             var response = new DashboardDataResponse
             {
+                PartnerCount = await _unitOfWork.Repository<Partner>().Entities.CountAsync(cancellationToken),
+                VehicleCount = await _unitOfWork.Repository<Vehicle>().Entities.CountAsync(cancellationToken),
                 ProductTestCount = await _unitOfWork.Repository<ProductTest>().Entities.CountAsync(cancellationToken),
                 BrandTestCount = await _unitOfWork.Repository<BrandTest>().Entities.CountAsync(cancellationToken),
                 DocumentCount = await _unitOfWork.Repository<Document>().Entities.CountAsync(cancellationToken),
@@ -48,6 +52,8 @@ namespace VBMS.Application.Features.Dashboards.Queries.GetData
             };
 
             var selectedYear = DateTime.Now.Year;
+            double[] partnersFigure = new double[13];
+            double[] vehiclesFigure = new double[13];
             double[] productTestsFigure = new double[13];
             double[] brandTestsFigure = new double[13];
             double[] documentsFigure = new double[13];
@@ -59,6 +65,8 @@ namespace VBMS.Application.Features.Dashboards.Queries.GetData
                 var filterStartDate = new DateTime(selectedYear, month, 01);
                 var filterEndDate = new DateTime(selectedYear, month, DateTime.DaysInMonth(selectedYear, month), 23, 59, 59); // Monthly Based
 
+                partnersFigure[i - 1] = await _unitOfWork.Repository<Partner>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
+                vehiclesFigure[i - 1] = await _unitOfWork.Repository<Vehicle>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
                 productTestsFigure[i - 1] = await _unitOfWork.Repository<ProductTest>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
                 brandTestsFigure[i - 1] = await _unitOfWork.Repository<BrandTest>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
                 documentsFigure[i - 1] = await _unitOfWork.Repository<Document>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);

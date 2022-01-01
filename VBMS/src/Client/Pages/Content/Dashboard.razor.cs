@@ -15,6 +15,8 @@ namespace VBMS.Client.Pages.Content
         [Inject] private IDashboardManager DashboardManager { get; set; }
 
         [CascadingParameter] private HubConnection HubConnection { get; set; }
+        [Parameter] public int PartnerCount { get; set; }
+        [Parameter] public int VehicleCount { get; set; }
         [Parameter] public int ProductTestCount { get; set; }
         [Parameter] public int BrandTestCount { get; set; }
         [Parameter] public int DocumentCount { get; set; }
@@ -47,6 +49,8 @@ namespace VBMS.Client.Pages.Content
             var response = await DashboardManager.GetDataAsync();
             if (response.Succeeded)
             {
+                PartnerCount = response.Data.PartnerCount;
+                VehicleCount = response.Data.VehicleCount;
                 ProductTestCount = response.Data.ProductTestCount;
                 BrandTestCount = response.Data.BrandTestCount;
                 DocumentCount = response.Data.DocumentCount;

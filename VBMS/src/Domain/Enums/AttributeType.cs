@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VBMS.Domain.Enums
 {
@@ -10,7 +6,7 @@ namespace VBMS.Domain.Enums
     {
         Integer,
         Decimal,
-        Text,
+        String,
         Logical,
         DateTime
     }

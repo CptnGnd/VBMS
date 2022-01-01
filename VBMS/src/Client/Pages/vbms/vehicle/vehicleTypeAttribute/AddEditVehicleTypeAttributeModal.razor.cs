@@ -9,10 +9,12 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using VBMS.Application.Features.BrandTests.Queries.GetAll;
+using VBMS.Application.Features.vbms.vehicle.vehicleType.Queries.GetAll;
 using VBMS.Application.Features.VehicleTypeAttributes.Commands.AddEdit;
 using VBMS.Application.Requests;
 using VBMS.Client.Extensions;
 using VBMS.Client.Infrastructure.Managers.Catalog.BrandTest;
+using VBMS.Client.Infrastructure.Managers.vbms.vehicle.vehicleType;
 using VBMS.Client.Infrastructure.Managers.vbms.vehicle.vehicleTypeAttribute;
 using VBMS.Shared.Constants.Application;
 
@@ -21,7 +23,7 @@ namespace VBMS.Client.Pages.vbms.vehicle.vehicleTypeAttribute
     public partial class AddEditVehicleTypeAttributeModal
     {
         [Inject] private IVehicleTypeAttributeManager VehicleTypeAttributeManager { get; set; }
-        [Inject] private IBrandTestManager BrandTestManager { get; set; }
+        [Inject] private IVehicleTypeManager VehicleTypeManager { get; set; }
 
         [Parameter] public AddEditVehicleTypeAttributeCommand AddEditVehicleTypeAttributeModel { get; set; } = new();
         [CascadingParameter] private HubConnection HubConnection { get; set; }
@@ -29,7 +31,7 @@ namespace VBMS.Client.Pages.vbms.vehicle.vehicleTypeAttribute
 
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private List<GetAllBrandTestsResponse> _brandTests = new();
+        private List<GetAllVehicleTypesResponse> _vehicleTypes = new();
 
         public void Cancel()
         {
@@ -67,15 +69,15 @@ namespace VBMS.Client.Pages.vbms.vehicle.vehicleTypeAttribute
         private async Task LoadDataAsync()
         {
            // await LoadImageAsync();
-            await LoadBrandTestsAsync();
+            await LoadVehicleTypessAsync();
         }
 
-        private async Task LoadBrandTestsAsync()
+        private async Task LoadVehicleTypessAsync()
         {
-            var data = await BrandTestManager.GetAllAsync();
+            var data = await VehicleTypeManager.GetAllAsync();
             if (data.Succeeded)
             {
-                _brandTests = data.Data;
+                _vehicleTypes = data.Data;
             }
         }
 
@@ -122,9 +124,9 @@ namespace VBMS.Client.Pages.vbms.vehicle.vehicleTypeAttribute
 
             // if text is null or empty, show complete list
             if (string.IsNullOrEmpty(value))
-                return _brandTests.Select(x => x.Id);
+                return _vehicleTypes.Select(x => x.Id);
 
-            return _brandTests.Where(x => x.Name.Contains(value, StringComparison.InvariantCultureIgnoreCase))
+            return _vehicleTypes.Where(x => x.Name.Contains(value, StringComparison.InvariantCultureIgnoreCase))
                 .Select(x => x.Id);
         }
     }

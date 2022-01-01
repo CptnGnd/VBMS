@@ -36,7 +36,7 @@
                     <MudTextField For="@(() => AddEditVehicleTypeAttributeModel.Description)" @bind-Value="AddEditVehicleTypeAttributeModel.Description" Label="@_localizer["Description"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudAutocomplete T="int" Label="@_localizer["BrandTest"]" For="@(() => AddEditVehicleTypeAttributeModel.VehicleTypeId)" @bind-Value="AddEditVehicleTypeAttributeModel.VehicleTypeId" ResetValueOnEmptyText="true" SearchFunc="@SearchBrandTests" Variant="Variant.Filled" ToStringFunc="@(i => _brandTests.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                    <MudAutocomplete T="int" Label="@_localizer["BrandTest"]" For="@(() => AddEditVehicleTypeAttributeModel.VehicleTypeId)" @bind-Value="AddEditVehicleTypeAttributeModel.VehicleTypeId" ResetValueOnEmptyText="true" SearchFunc="@SearchBrandTests" Variant="Variant.Filled" ToStringFunc="@(i => _vehicleTypes.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
                 </MudItem>
                 <MudItem xs="12" md="6">
                     <MudTextField For="@(() => AddEditVehicleTypeAttributeModel.AttributeType)" @bind-Value="AddEditVehicleTypeAttributeModel.AttributeType" Label="@_localizer["Rate"]" />

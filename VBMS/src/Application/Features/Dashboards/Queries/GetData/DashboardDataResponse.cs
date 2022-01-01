@@ -4,6 +4,8 @@ namespace VBMS.Application.Features.Dashboards.Queries.GetData
 {
     public class DashboardDataResponse
     {
+        public int PartnerCount { get; set; }
+        public int VehicleCount { get; set; }
         public int ProductTestCount { get; set; }
         public int BrandTestCount { get; set; }
         public int DocumentCount { get; set; }
