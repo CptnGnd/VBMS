@@ -22,7 +22,8 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\vbms\booking\booking\" />
+    <Folder Include="Features\vbms\booking\bookingAttribute\" />
+    <Folder Include="Features\vbms\booking\driver\" />
     <Folder Include="Features\vbms\diary\" />
     <Folder Include="Features\vbms\partner\partnerAttributes\" />
     <Folder Include="Features\vbms\partner\partnerTypeAttributes\" />
