@@ -1,6 +1,6 @@
 ﻿namespace VBMS.Application.Features.BrandTests.Queries.GetAll
 {
-    public class GetAllBrandTestsResponse
+    public class GetAllVehicleTypessResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }

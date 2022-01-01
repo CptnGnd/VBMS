@@ -26,6 +26,7 @@ namespace VBMS.Infrastructure.Extensions
         {
             return services
                 .AddTransient(typeof(IRepositoryAsync<,>), typeof(RepositoryAsync<,>))
+                .AddTransient<IBookingRepository, BookingRepository>()
                 .AddTransient<IPartnerRepository, PartnerRepository>()
                 .AddTransient<IPartnerTypeRepository, PartnerTypeRepository>()
                 .AddTransient<IVehicleRepository, VehicleRepository>()

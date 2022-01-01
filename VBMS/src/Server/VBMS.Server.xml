@@ -410,6 +410,37 @@
             <param name="searchString"></param>
             <returns>Status 200 OK</returns>
         </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BookingsController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Bookings
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BookingsController.Post(VBMS.Application.Features.vbms.booking.booking.Commands.AddEdit.AddEditBookingCommand)">
+            <summary>
+            Add/Edit a Booking
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BookingsController.Delete(System.Int32)">
+            <summary>
+            Delete a Booking
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BookingsController.Export(System.String)">
+            <summary>
+            Search Bookings and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
         <member name="M:VBMS.Server.Controllers.v1.DashboardController.GetDataAsync">
             <summary>
             Get Dashboard Data

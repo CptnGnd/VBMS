@@ -6,6 +6,15 @@ namespace VBMS.Shared.Constants.Permission
 {
     public static class Permissions
     {
+        public static class Bookings
+        {
+            public const string View = "Permissions.Bookings.View";
+            public const string Create = "Permissions.Bookings.Create";
+            public const string Edit = "Permissions.Bookings.Edit";
+            public const string Delete = "Permissions.Bookings.Delete";
+            public const string Export = "Permissions.Bookings.Export";
+            public const string Search = "Permissions.Bookings.Search";
+        }
         public static class Vehicles
         {
             public const string View = "Permissions.Vehicles.View";

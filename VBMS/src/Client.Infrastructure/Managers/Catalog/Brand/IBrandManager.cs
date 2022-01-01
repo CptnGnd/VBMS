@@ -8,7 +8,7 @@ namespace VBMS.Client.Infrastructure.Managers.Catalog.BrandTest
 {
     public interface IBrandTestManager : IManager
     {
-        Task<IResult<List<GetAllBrandTestsResponse>>> GetAllAsync();
+        Task<IResult<List<GetAllVehicleTypessResponse>>> GetAllAsync();
 
         Task<IResult<int>> SaveAsync(AddEditBrandTestCommand request);
 

@@ -9,6 +9,8 @@ namespace VBMS.Client.Infrastructure.Managers.vbms.partner.partner
     public interface IPartnerManager : IManager
     {
         Task<PaginatedResult<GetAllPagedPartnersResponse>> GetPartnersAsync(GetAllPagedPartnersRequest request);
+        
+        Task<PaginatedResult<GetAllPagedPartnersResponse>> GetAllPartnersAsync();
 
         Task<IResult<string>> GetPartnerImageAsync(int id);
 

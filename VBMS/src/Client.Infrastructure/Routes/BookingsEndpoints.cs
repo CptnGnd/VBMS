@@ -2,11 +2,11 @@
 
 namespace VBMS.Client.Infrastructure.Routes
 {
-    public static class PartnersEndpoints
+    public static class BookingsEndpoints
     {
         public static string GetAllPaged(int pageNumber, int pageSize, string searchString, string[] orderBy)
         {
-            var url = $"api/v1/partners?pageNumber={pageNumber}&pageSize={pageSize}&searchString={searchString}&orderBy=";
+            var url = $"api/v1/bookings?pageNumber={pageNumber}&pageSize={pageSize}&searchString={searchString}&orderBy=";
             if (orderBy?.Any() == true)
             {
                 foreach (var orderByPart in orderBy)
@@ -18,11 +18,11 @@ namespace VBMS.Client.Infrastructure.Routes
             return url;
         }
 
-        public static string GetCount = "api/v1/partners/count";
+        public static string GetCount = "api/v1/bookings/count";
 
-        public static string GetPartnerImage(int partnerId)
+        public static string GetBookingImage(int bookingId)
         {
-            return $"api/v1/partners/image/{partnerId}";
+            return $"api/v1/bookings/image/{bookingId}";
         }
 
         public static string ExportFiltered(string searchString)
@@ -30,11 +30,9 @@ namespace VBMS.Client.Infrastructure.Routes
             return $"{Export}?searchString={searchString}";
         }
 
-        public static string GetAll = "api/v1/partners";
-
-        public static string Save = "api/v1/partners";
-        public static string Delete = "api/v1/partners";
-        public static string Export = "api/v1/partners/export";
+        public static string Save = "api/v1/bookings";
+        public static string Delete = "api/v1/bookings";
+        public static string Export = "api/v1/bookings/export";
         public static string ChangePassword = "api/identity/account/changepassword";
         public static string UpdateProfile = "api/identity/account/updateprofile";
     }

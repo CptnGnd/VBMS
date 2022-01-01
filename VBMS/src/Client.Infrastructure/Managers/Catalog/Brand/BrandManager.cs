@@ -32,10 +32,10 @@ namespace VBMS.Client.Infrastructure.Managers.Catalog.BrandTest
             return await response.ToResult<int>();
         }
 
-        public async Task<IResult<List<GetAllBrandTestsResponse>>> GetAllAsync()
+        public async Task<IResult<List<GetAllVehicleTypessResponse>>> GetAllAsync()
         {
             var response = await _httpClient.GetAsync(Routes.BrandTestsEndpoints.GetAll);
-            return await response.ToResult<List<GetAllBrandTestsResponse>>();
+            return await response.ToResult<List<GetAllVehicleTypessResponse>>();
         }
 
         public async Task<IResult<int>> SaveAsync(AddEditBrandTestCommand request)

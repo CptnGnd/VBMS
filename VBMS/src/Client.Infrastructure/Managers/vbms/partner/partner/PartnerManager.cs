@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using VBMS.Application.Features.vbms.partner.partner.Commands.AddEdit;
@@ -30,6 +31,20 @@ namespace VBMS.Client.Infrastructure.Managers.vbms.partner.partner
                 ? Routes.PartnersEndpoints.Export
                 : Routes.PartnersEndpoints.ExportFiltered(searchString));
             return await response.ToResult<string>();
+        }
+
+        //public async Task<PaginatedResult<GetAllPagedPartnersResponse>> GetAllPartnersAsync(GetAllPagedPartnersRequest request)
+        //{
+        //    var response = await _httpClient.GetAsync(Routes.PartnersEndpoints.GetAll);
+        //    return (PaginatedResult<GetAllPagedPartnersResponse>)await response.ToResult<List<GetAllPagedPartnersResponse>>();
+        //    // throw new System.NotImplementedException();
+        //}
+
+        public async Task<PaginatedResult<GetAllPagedPartnersResponse>> GetAllPartnersAsync()
+        {
+                var response = await _httpClient.GetAsync(Routes.PartnersEndpoints.GetAll);
+                return (PaginatedResult<GetAllPagedPartnersResponse>)await response.ToResult<List<GetAllPagedPartnersResponse>>();
+            //    // throw new System.NotImplementedException();
         }
 
         public async Task<IResult<string>> GetPartnerImageAsync(int id)

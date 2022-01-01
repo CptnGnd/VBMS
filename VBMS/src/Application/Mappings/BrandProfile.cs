@@ -12,7 +12,7 @@ namespace VBMS.Application.Mappings
         {
             CreateMap<AddEditBrandTestCommand, BrandTest>().ReverseMap();
             CreateMap<GetBrandTestByIdResponse, BrandTest>().ReverseMap();
-            CreateMap<GetAllBrandTestsResponse, BrandTest>().ReverseMap();
+            CreateMap<GetAllVehicleTypessResponse, BrandTest>().ReverseMap();
         }
     }
 }

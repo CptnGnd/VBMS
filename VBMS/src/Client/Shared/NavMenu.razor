@@ -108,6 +108,28 @@
             </MudNavLink>
         }
     }
+      @if (_canViewBookings )
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Vehicle Management"]</MudListSubheader>
+        @if (_canViewBookings)
+        {
+            <MudNavLink Href="/vbms/bookings" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Bookings"]
+            </MudNavLink>
+        }  
+     @*   @if (_canViewProductTests)
+        {
+            <MudNavLink Href="/vbms/vehicleTypeAttributes" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["VehicleTypeAttributes"]
+            </MudNavLink>
+        }
+        @if (_canViewBrandTests)
+        {
+            <MudNavLink Href="/vbms/vehicles" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Vehicles"]
+            </MudNavLink>
+        } *@
+    }
   @*     @if (_canviewVehicleTypes || _canviewVehicles)
     {
         <MudListSubheader Class="mt-2 mb-n2">@_localizer["Vehicle Management"]</MudListSubheader>
@@ -159,6 +181,7 @@
     private bool _canviewVehicles;
     private bool _canViewPartnerTypes;
     private bool _canViewPartners;
+    private bool _canViewBookings;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -177,5 +200,6 @@
         _canviewVehicles = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Vehicles.View)).Succeeded;
         _canViewPartnerTypes = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.PartnerTypes.View)).Succeeded;
         _canViewPartners = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Partners.View)).Succeeded;
+        _canViewBookings = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Bookings.View)).Succeeded;
     }
 }

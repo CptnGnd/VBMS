@@ -23,8 +23,8 @@ namespace VBMS.Client.Pages.Catalog
 
         [CascadingParameter] private HubConnection HubConnection { get; set; }
 
-        private List<GetAllBrandTestsResponse> _brandTestList = new();
-        private GetAllBrandTestsResponse _brandTest = new();
+        private List<GetAllVehicleTypessResponse> _brandTestList = new();
+        private GetAllVehicleTypessResponse _brandTest = new();
         private string _searchString = "";
         private bool _dense = true;
         private bool _striped = true;
@@ -154,11 +154,11 @@ namespace VBMS.Client.Pages.Catalog
 
         private async Task Reset()
         {
-            _brandTest = new GetAllBrandTestsResponse();
+            _brandTest = new GetAllVehicleTypessResponse();
             await GetBrandTestsAsync();
         }
 
-        private bool Search(GetAllBrandTestsResponse brandTest)
+        private bool Search(GetAllVehicleTypessResponse brandTest)
         {
             if (string.IsNullOrWhiteSpace(_searchString)) return true;
             if (brandTest.Name?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
