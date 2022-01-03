@@ -457,6 +457,12 @@
             <param name="orderBy"></param>
             <returns>Status 200 OK</returns>
         </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnersController.GetAll">
+            <summary>
+            Get All PartnerTypes
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
         <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnersController.GetPartnerImageAsync(System.Int32)">
             <summary>
             Get a Partner Image by Id

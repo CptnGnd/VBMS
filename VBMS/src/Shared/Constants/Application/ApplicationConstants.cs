@@ -27,6 +27,7 @@
             public const string GetAllDocumentTypesCacheKey = "all-document-types";
             public const string GetAllVehicleTypesCacheKey = "all-vehicleTypes";
             public const string GetAllPartnerTypesCacheKey = "all-partnerTypes";
+            public const string GetAllPartnersCacheKey = "all-partners";
 
             public static string GetAllEntityExtendedAttributesCacheKey(string entityFullName)
             {

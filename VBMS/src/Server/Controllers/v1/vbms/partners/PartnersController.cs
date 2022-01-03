@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using VBMS.Application.Features.vbms.partner.partner.Commands.AddEdit;
 using VBMS.Application.Features.vbms.partner.partner.Commands.Delete;
 using VBMS.Application.Features.vbms.partner.partner.Queries.Export;
+using VBMS.Application.Features.vbms.partner.partner.Queries.GetAll;
 using VBMS.Application.Features.vbms.partner.partner.Queries.GetAllPaged;
 using VBMS.Application.Features.vbms.partner.partner.Queries.GetProductImage;
 using VBMS.Shared.Constants.Permission;
@@ -26,6 +27,18 @@ namespace VBMS.Server.Controllers.v1.vbms.partners
         {
             var partners = await _mediator.Send(new GetAllPartnersQuery(pageNumber, pageSize, searchString, orderBy));
             return Ok(partners);
+        }
+
+        /// <summary>
+        /// Get All PartnerTypes
+        /// </summary>
+        /// <returns>Status 200 OK</returns>
+        [Authorize(Policy = Permissions.Partners.View)]
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var PartnerTypes = await _mediator.Send(new GetAllAllPartnersQuery());
+            return Ok(PartnerTypes);
         }
 
         /// <summary>

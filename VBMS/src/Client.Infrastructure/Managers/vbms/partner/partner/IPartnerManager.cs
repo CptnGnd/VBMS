@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using VBMS.Application.Features.vbms.partner.partner.Commands.AddEdit;
+using VBMS.Application.Features.vbms.partner.partner.Queries.GetAll;
 using VBMS.Application.Features.vbms.partner.partner.Queries.GetAllPaged;
 using VBMS.Application.Requests.vbms.partner;
 using VBMS.Shared.Wrapper;
@@ -10,7 +11,7 @@ namespace VBMS.Client.Infrastructure.Managers.vbms.partner.partner
     {
         Task<PaginatedResult<GetAllPagedPartnersResponse>> GetPartnersAsync(GetAllPagedPartnersRequest request);
         
-        Task<PaginatedResult<GetAllPagedPartnersResponse>> GetAllPartnersAsync();
+        Task<PaginatedResult<GetAllPartnersResponse>> GetAllPartnersAsync();
 
         Task<IResult<string>> GetPartnerImageAsync(int id);
 

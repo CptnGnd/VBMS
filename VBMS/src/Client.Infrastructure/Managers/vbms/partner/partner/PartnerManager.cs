@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using VBMS.Application.Features.vbms.partner.partner.Commands.AddEdit;
+using VBMS.Application.Features.vbms.partner.partner.Queries.GetAll;
 using VBMS.Application.Features.vbms.partner.partner.Queries.GetAllPaged;
 using VBMS.Application.Requests.vbms.partner;
 using VBMS.Client.Infrastructure.Extensions;
@@ -40,10 +41,10 @@ namespace VBMS.Client.Infrastructure.Managers.vbms.partner.partner
         //    // throw new System.NotImplementedException();
         //}
 
-        public async Task<PaginatedResult<GetAllPagedPartnersResponse>> GetAllPartnersAsync()
+        public async Task<PaginatedResult<GetAllPartnersResponse>> GetAllPartnersAsync()
         {
                 var response = await _httpClient.GetAsync(Routes.PartnersEndpoints.GetAll);
-                return (PaginatedResult<GetAllPagedPartnersResponse>)await response.ToResult<List<GetAllPagedPartnersResponse>>();
+                return (PaginatedResult<GetAllPartnersResponse>)await response.ToResult<List<GetAllPartnersResponse>>();
             //    // throw new System.NotImplementedException();
         }
 

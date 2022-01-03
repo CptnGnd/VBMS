@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VBMS.Application.Features.BrandTests.Queries.GetAll;
 using VBMS.Application.Features.vbms.booking.booking.Commands.AddEdit;
+using VBMS.Application.Features.vbms.partner.partner.Queries.GetAll;
 using VBMS.Application.Features.vbms.partner.partner.Queries.GetAllPaged;
 using VBMS.Application.Features.vbms.vehicle.vehicleType.Queries.GetAll;
 using VBMS.Application.Requests;
@@ -35,7 +36,7 @@ namespace VBMS.Client.Pages.vbms.bookings
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
         private List<GetAllVehicleTypesResponse> _vehicleTypes = new();
-        private List<GetAllPagedPartnersResponse> _partners = new();
+        private List<GetAllPartnersResponse> _partners = new();
 
         public void Cancel()
         {
@@ -72,8 +73,9 @@ namespace VBMS.Client.Pages.vbms.bookings
 
         private async Task LoadDataAsync()
         {
-         //   await LoadImageAsync();
+            //   await LoadImageAsync();
             await LoadVehicleTypesAsync();
+            await LoadPartnersAsync();
         }
 
         private async Task LoadVehicleTypesAsync()
