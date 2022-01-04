@@ -447,6 +447,40 @@
             </summary>
             <returns>Status 200 OK </returns>
         </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.diary.DiaryTypesController.GetAll">
+            <summary>
+            Get All DiaryTypes
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.diary.DiaryTypesController.GetById(System.Int32)">
+            <summary>
+            Get a DiaryType By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.diary.DiaryTypesController.Post(VBMS.Application.Features.vbms.diary.diaryType.Commands.AddEdit.AddEditDiaryTypeCommand)">
+            <summary>
+            Create/Update a DiaryType
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.diary.DiaryTypesController.Delete(System.Int32)">
+            <summary>
+            Delete a DiaryType
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.diary.DiaryTypesController.Export(System.String)">
+            <summary>
+            Search DiaryTypes and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
         <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnersController.GetAll(System.Int32,System.Int32,System.String,System.String)">
             <summary>
             Get All Partners

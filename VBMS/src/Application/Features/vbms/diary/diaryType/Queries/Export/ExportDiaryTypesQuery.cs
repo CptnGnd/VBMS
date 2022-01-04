@@ -50,7 +50,7 @@ namespace VBMS.Application.Features.vbms.diary.diaryType.Queries.Export
                 { _localizer["Id"], item => item.Id },
                 { _localizer["Name"], item => item.Name },
                 { _localizer["Description"], item => item.Description },
-                { _localizer["Colour"], item => item.Color }
+                { _localizer["Colour"], item => item.Colour }
             }, sheetName: _localizer["DiaryTypes"]);
 
             return await Result<string>.SuccessAsync(data: data);

@@ -47,7 +47,7 @@ namespace VBMS.Application.Features.vbms.diary.diaryType.Commands.AddEdit
                 return await Result<int>.FailAsync(_localizer["DiaryType already exists."]);
             }
             if (await _unitOfWork.Repository<DiaryType>().Entities.Where(p => p.Id != command.Id)
-                .AnyAsync(p => p.Color == command.Colour, cancellationToken))
+                .AnyAsync(p => p.Colour == command.Colour, cancellationToken))
             {
                 return await Result<int>.FailAsync(_localizer["Colour Must Be Unique."]);
             }
@@ -76,7 +76,7 @@ namespace VBMS.Application.Features.vbms.diary.diaryType.Commands.AddEdit
                 {
                     diaryType.Name = command.Name ?? diaryType.Name;
                     diaryType.Description = command.Description ?? diaryType.Description;
-                    diaryType.Color = command.Colour ?? diaryType.Color;
+                    diaryType.Colour = command.Colour ?? diaryType.Colour;
                     await _unitOfWork.Repository<DiaryType>().UpdateAsync(diaryType);
                     await _unitOfWork.Commit(cancellationToken);
                     return await Result<int>.SuccessAsync(diaryType.Id, _localizer["DiaryType Updated"]);
