@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace VBMS.Application.Features.BrandTests.Queries.GetAll
 {
-    public class GetAllBrandTestsQuery : IRequest<Result<List<GetAllVehicleTypessResponse>>>
+    public class GetAllBrandTestsQuery : IRequest<Result<List<GetAllBrandsResponse>>>
     {
         public GetAllBrandTestsQuery()
         {
         }
     }
 
-    internal class GetAllBrandTestsCachedQueryHandler : IRequestHandler<GetAllBrandTestsQuery, Result<List<GetAllVehicleTypessResponse>>>
+    internal class GetAllBrandTestsCachedQueryHandler : IRequestHandler<GetAllBrandTestsQuery, Result<List<GetAllBrandsResponse>>>
     {
         private readonly IUnitOfWork<int> _unitOfWork;
         private readonly IMapper _mapper;
@@ -32,12 +32,12 @@ namespace VBMS.Application.Features.BrandTests.Queries.GetAll
             _cache = cache;
         }
 
-        public async Task<Result<List<GetAllVehicleTypessResponse>>> Handle(GetAllBrandTestsQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<GetAllBrandsResponse>>> Handle(GetAllBrandTestsQuery request, CancellationToken cancellationToken)
         {
             Func<Task<List<BrandTest>>> getAllBrandTests = () => _unitOfWork.Repository<BrandTest>().GetAllAsync();
             var brandTestList = await _cache.GetOrAddAsync(ApplicationConstants.Cache.GetAllBrandTestsCacheKey, getAllBrandTests);
-            var mappedBrandTests = _mapper.Map<List<GetAllVehicleTypessResponse>>(brandTestList);
-            return await Result<List<GetAllVehicleTypessResponse>>.SuccessAsync(mappedBrandTests);
+            var mappedBrandTests = _mapper.Map<List<GetAllBrandsResponse>>(brandTestList);
+            return await Result<List<GetAllBrandsResponse>>.SuccessAsync(mappedBrandTests);
         }
     }
 }

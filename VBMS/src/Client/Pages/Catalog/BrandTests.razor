@@ -16,7 +16,7 @@
 }
 else
 {
-    <MudTable Hover="true" Elevation="25" Items="_brandTestList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<GetAllVehicleTypessResponse, bool>(Search)" @bind-brandTest="_brandTest">
+    <MudTable Hover="true" Elevation="25" Items="_brandTestList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<GetAllBrandsResponse, bool>(Search)" @bind-brandTest="_brandTest">
         <ToolBarContent>
             <div class="justify-center mud-text-align-center">
                 @if (_canCreateBrandTests)
@@ -44,10 +44,10 @@ else
             }
         </ToolBarContent>
         <HeaderContent>
-            <MudTh><MudTableSortLabel SortBy="new Func<GetAllVehicleTypessResponse, object>(x => x.Id)">@_localizer["Id"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<GetAllVehicleTypessResponse, object>(x => x.Name)">@_localizer["Name"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<GetAllVehicleTypessResponse, object>(x => x.Description)">@_localizer["Description"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<GetAllVehicleTypessResponse, object>(x => x.Tax)">@_localizer["Tax"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllBrandsResponse, object>(x => x.Id)">@_localizer["Id"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllBrandsResponse, object>(x => x.Name)">@_localizer["Name"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllBrandsResponse, object>(x => x.Description)">@_localizer["Description"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<GetAllBrandsResponse, object>(x => x.Tax)">@_localizer["Tax"]</MudTableSortLabel></MudTh>
             <MudTh Style="text-align:right">@_localizer["Actions"]</MudTh>
         </HeaderContent>
         <RowTemplate>

@@ -29,7 +29,7 @@ namespace VBMS.Client.Pages.Catalog
 
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private List<GetAllVehicleTypessResponse> _brandTests = new();
+        private List<GetAllBrandsResponse> _brandTests = new();
 
         public void Cancel()
         {

@@ -70,14 +70,14 @@ namespace VBMS.Shared.Constants.Permission
             public const string Export = "Permissions.PartnerTypes.Export";
             public const string Search = "Permissions.PartnerTypes.Search";
         }
-       public static class BrandTests
+       public static class DairyTypes
         {
-            public const string View = "Permissions.BrandTests.View";
-            public const string Create = "Permissions.BrandTests.Create";
-            public const string Edit = "Permissions.BrandTests.Edit";
-            public const string Delete = "Permissions.BrandTests.Delete";
-            public const string Export = "Permissions.BrandTests.Export";
-            public const string Search = "Permissions.BrandTests.Search";
+            public const string View = "Permissions.DairyTypes.View";
+            public const string Create = "Permissions.DairyTypes.Create";
+            public const string Edit = "Permissions.DairyTypes.Edit";
+            public const string Delete = "Permissions.DairyTypes.Delete";
+            public const string Export = "Permissions.DairyTypes.Export";
+            public const string Search = "Permissions.DairyTypes.Search";
         }
         public static class Documents
         {
@@ -87,7 +87,15 @@ namespace VBMS.Shared.Constants.Permission
             public const string Delete = "Permissions.Documents.Delete";
             public const string Search = "Permissions.Documents.Search";
         }
-
+      public static class BrandTests
+        {
+            public const string View = "Permissions.BrandTests.View";
+            public const string Create = "Permissions.BrandTests.Create";
+            public const string Edit = "Permissions.BrandTests.Edit";
+            public const string Delete = "Permissions.BrandTests.Delete";
+            public const string Export = "Permissions.BrandTests.Export";
+            public const string Search = "Permissions.BrandTests.Search";
+        }
         public static class DocumentTypes
         {
             public const string View = "Permissions.DocumentTypes.View";
