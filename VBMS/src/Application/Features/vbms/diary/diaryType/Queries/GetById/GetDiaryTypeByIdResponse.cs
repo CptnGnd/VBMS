@@ -1,6 +1,6 @@
-﻿namespace VBMS.Application.Features.vbms.diary.dairyType.Queries.GetById
+﻿namespace VBMS.Application.Features.vbms.diary.diaryType.Queries.GetById
 {
-    public class GetDairyTypeByIdResponse
+    public class GetDiaryTypeByIdResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -489,7 +489,7 @@ namespace VBMS.Infrastructure.Migrations
                     b.ToTable("Drivers");
                 });
 
-            modelBuilder.Entity("VBMS.Domain.Entities.vbms.diary.Dairy", b =>
+            modelBuilder.Entity("VBMS.Domain.Entities.vbms.diary.Diary", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -538,7 +538,7 @@ namespace VBMS.Infrastructure.Migrations
                     b.ToTable("Dairys");
                 });
 
-            modelBuilder.Entity("VBMS.Domain.Entities.vbms.diary.DairyType", b =>
+            modelBuilder.Entity("VBMS.Domain.Entities.vbms.diary.DiaryType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1239,7 +1239,7 @@ namespace VBMS.Infrastructure.Migrations
                     b.Navigation("Booking");
                 });
 
-            modelBuilder.Entity("VBMS.Domain.Entities.vbms.diary.Dairy", b =>
+            modelBuilder.Entity("VBMS.Domain.Entities.vbms.diary.Diary", b =>
                 {
                     b.HasOne("VBMS.Domain.Entities.vbms.bookings.Booking", "Booking")
                         .WithMany()
@@ -1247,7 +1247,7 @@ namespace VBMS.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VBMS.Domain.Entities.vbms.diary.DairyType", "DairyType")
+                    b.HasOne("VBMS.Domain.Entities.vbms.diary.DiaryType", "DiaryType")
                         .WithMany()
                         .HasForeignKey("DairyTypeId");
 
@@ -1259,7 +1259,7 @@ namespace VBMS.Infrastructure.Migrations
 
                     b.Navigation("Booking");
 
-                    b.Navigation("DairyType");
+                    b.Navigation("DiaryType");
 
                     b.Navigation("Vehicle");
                 });

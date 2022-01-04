@@ -5,7 +5,7 @@ using VBMS.Domain.Entities.vbms.vehicles;
 
 namespace VBMS.Domain.Entities.vbms.diary
 {
-    public class Dairy : AuditableEntity<int>
+    public class Diary : AuditableEntity<int>
     {
         public int VehicleId { get; set; }
         public virtual Vehicle Vehicle { get; set;}
@@ -14,6 +14,6 @@ namespace VBMS.Domain.Entities.vbms.diary
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public int DiaryTypeId { get; set; }
-        public virtual DairyType DairyType { get; set; }
+        public virtual DiaryType DiaryType { get; set; }
     }
 }

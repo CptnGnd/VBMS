@@ -70,14 +70,14 @@ namespace VBMS.Shared.Constants.Permission
             public const string Export = "Permissions.PartnerTypes.Export";
             public const string Search = "Permissions.PartnerTypes.Search";
         }
-       public static class DairyTypes
+       public static class DiaryTypes
         {
-            public const string View = "Permissions.DairyTypes.View";
-            public const string Create = "Permissions.DairyTypes.Create";
-            public const string Edit = "Permissions.DairyTypes.Edit";
-            public const string Delete = "Permissions.DairyTypes.Delete";
-            public const string Export = "Permissions.DairyTypes.Export";
-            public const string Search = "Permissions.DairyTypes.Search";
+            public const string View = "Permissions.DiaryTypes.View";
+            public const string Create = "Permissions.DiaryTypes.Create";
+            public const string Edit = "Permissions.DiaryTypes.Edit";
+            public const string Delete = "Permissions.DiaryTypes.Delete";
+            public const string Export = "Permissions.DiaryTypes.Export";
+            public const string Search = "Permissions.DiaryTypes.Search";
         }
         public static class Documents
         {

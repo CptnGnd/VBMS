@@ -11,9 +11,9 @@ using VBMS.Application.Interfaces.Services;
 using VBMS.Domain.Entities.vbms.diary;
 using VBMS.Shared.Wrapper;
 
-namespace VBMS.Application.Features.vbms.diary.dairyType.Commands.AddEdit
+namespace VBMS.Application.Features.vbms.diary.diaryType.Commands.AddEdit
 {
-    public partial class AddEditDairyTypeCommand : IRequest<Result<int>>
+    public partial class AddEditDiaryTypeCommand : IRequest<Result<int>>
     {
         public int Id { get; set; }
         [Required]
@@ -24,14 +24,14 @@ namespace VBMS.Application.Features.vbms.diary.dairyType.Commands.AddEdit
         public string Colour { get; set; }
     }
 
-    internal class AddEditDairyTypeCommandHandler : IRequestHandler<AddEditDairyTypeCommand, Result<int>>
+    internal class AddEditDiaryTypeCommandHandler : IRequestHandler<AddEditDiaryTypeCommand, Result<int>>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork<int> _unitOfWork;
         private readonly IUploadService _uploadService;
-        private readonly IStringLocalizer<AddEditDairyTypeCommandHandler> _localizer;
+        private readonly IStringLocalizer<AddEditDiaryTypeCommandHandler> _localizer;
 
-        public AddEditDairyTypeCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditDairyTypeCommandHandler> localizer)
+        public AddEditDiaryTypeCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditDiaryTypeCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -39,14 +39,14 @@ namespace VBMS.Application.Features.vbms.diary.dairyType.Commands.AddEdit
             _localizer = localizer;
         }
 
-        public async Task<Result<int>> Handle(AddEditDairyTypeCommand command, CancellationToken cancellationToken)
+        public async Task<Result<int>> Handle(AddEditDiaryTypeCommand command, CancellationToken cancellationToken)
         {
-            if (await _unitOfWork.Repository<DairyType>().Entities.Where(p => p.Id != command.Id)
+            if (await _unitOfWork.Repository<DiaryType>().Entities.Where(p => p.Id != command.Id)
                 .AnyAsync(p => p.Name == command.Name, cancellationToken))
             {
-                return await Result<int>.FailAsync(_localizer["DairyType already exists."]);
+                return await Result<int>.FailAsync(_localizer["DiaryType already exists."]);
             }
-            if (await _unitOfWork.Repository<DairyType>().Entities.Where(p => p.Id != command.Id)
+            if (await _unitOfWork.Repository<DiaryType>().Entities.Where(p => p.Id != command.Id)
                 .AnyAsync(p => p.Color == command.Colour, cancellationToken))
             {
                 return await Result<int>.FailAsync(_localizer["Colour Must Be Unique."]);
@@ -60,30 +60,30 @@ namespace VBMS.Application.Features.vbms.diary.dairyType.Commands.AddEdit
 
             if (command.Id == 0)
             {
-                var dairyType = _mapper.Map<DairyType>(command);
+                var diaryType = _mapper.Map<DiaryType>(command);
                 //if (uploadRequest != null)
                 //{
-                //    dairyType.ImageDataURL = _uploadService.UploadAsync(uploadRequest);
+                //    diaryType.ImageDataURL = _uploadService.UploadAsync(uploadRequest);
                 //}
-                await _unitOfWork.Repository<DairyType>().AddAsync(dairyType);
+                await _unitOfWork.Repository<DiaryType>().AddAsync(diaryType);
                 await _unitOfWork.Commit(cancellationToken);
-                return await Result<int>.SuccessAsync(dairyType.Id, _localizer["DairyType Saved"]);
+                return await Result<int>.SuccessAsync(diaryType.Id, _localizer["DiaryType Saved"]);
             }
             else
             {
-                var dairyType = await _unitOfWork.Repository<DairyType>().GetByIdAsync(command.Id);
-                if (dairyType != null)
+                var diaryType = await _unitOfWork.Repository<DiaryType>().GetByIdAsync(command.Id);
+                if (diaryType != null)
                 {
-                    dairyType.Name = command.Name ?? dairyType.Name;
-                    dairyType.Description = command.Description ?? dairyType.Description;
-                    dairyType.Color = command.Colour ?? dairyType.Color;
-                    await _unitOfWork.Repository<DairyType>().UpdateAsync(dairyType);
+                    diaryType.Name = command.Name ?? diaryType.Name;
+                    diaryType.Description = command.Description ?? diaryType.Description;
+                    diaryType.Color = command.Colour ?? diaryType.Color;
+                    await _unitOfWork.Repository<DiaryType>().UpdateAsync(diaryType);
                     await _unitOfWork.Commit(cancellationToken);
-                    return await Result<int>.SuccessAsync(dairyType.Id, _localizer["DairyType Updated"]);
+                    return await Result<int>.SuccessAsync(diaryType.Id, _localizer["DiaryType Updated"]);
                 }
                 else
                 {
-                    return await Result<int>.FailAsync(_localizer["DairyType Not Found!"]);
+                    return await Result<int>.FailAsync(_localizer["DiaryType Not Found!"]);
                 }
             }
         }

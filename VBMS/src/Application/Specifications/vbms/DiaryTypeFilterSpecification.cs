@@ -3,9 +3,9 @@ using VBMS.Domain.Entities.vbms.diary;
 
 namespace VBMS.Application.Specifications.vbms
 {
-    public class DairyTypeFilterSpecification : HeroSpecification<DairyType>
+    public class DiaryTypeFilterSpecification : HeroSpecification<DiaryType>
     {
-        public DairyTypeFilterSpecification(string searchString)
+        public DiaryTypeFilterSpecification(string searchString)
         {
             if (!string.IsNullOrEmpty(searchString))
             {

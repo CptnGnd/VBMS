@@ -40,8 +40,8 @@ namespace VBMS.Infrastructure.Contexts
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<BookingAttribute> BookingAttributes { get; set; }
         public DbSet<Driver> Drivers { get; set; }
-        public DbSet<Dairy> Dairys { get; set; }
-        public DbSet<DairyType> DairyTypes { get; set; }
+        public DbSet<Diary> Diarys { get; set; }
+        public DbSet<DiaryType> DiaryTypes { get; set; }
         public DbSet<Partner> Partners { get; set; }
         public DbSet<PartnerAttribute> PartnerAttributes { get; set; }
         public DbSet<PartnerType> PartnerTypes { get; set; }
