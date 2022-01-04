@@ -28,6 +28,7 @@
             public const string GetAllVehicleTypesCacheKey = "all-vehicleTypes";
             public const string GetAllPartnerTypesCacheKey = "all-partnerTypes";
             public const string GetAllPartnersCacheKey = "all-partners";
+            public const string GetAllDairyTypesCacheKey = "all-dairyTypes";
 
             public static string GetAllEntityExtendedAttributesCacheKey(string entityFullName)
             {

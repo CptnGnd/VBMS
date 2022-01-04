@@ -14,12 +14,12 @@ namespace VBMS.Application.Features.vbms.vehicle.vehicleType.Queries.GetById
         public int Id { get; set; }
     }
 
-    internal class GetProductTestByIdQueryHandler : IRequestHandler<GetVehicleTypeByIdQuery, Result<GetVehicleTypeByIdResponse>>
+    internal class GetVehicleTypeByIdQueryHandler : IRequestHandler<GetVehicleTypeByIdQuery, Result<GetVehicleTypeByIdResponse>>
     {
         private readonly IUnitOfWork<int> _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetProductTestByIdQueryHandler(IUnitOfWork<int> unitOfWork, IMapper mapper)
+        public GetVehicleTypeByIdQueryHandler(IUnitOfWork<int> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
