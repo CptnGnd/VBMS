@@ -108,7 +108,17 @@
             </MudNavLink>
         }
     }
-      @if (_canViewBookings )
+    @if (_canViewDiaryTypes)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Diary Management"]</MudListSubheader>
+          @if (_canViewDiaryTypes)
+        {
+            <MudNavLink Href="/vbms/diaryTypes" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Diary Types"]
+            </MudNavLink>
+        }  
+    }
+    @if (_canViewBookings )
     {
         <MudListSubheader Class="mt-2 mb-n2">@_localizer["Vehicle Management"]</MudListSubheader>
         @if (_canViewBookings)
@@ -182,6 +192,7 @@
     private bool _canViewPartnerTypes;
     private bool _canViewPartners;
     private bool _canViewBookings;
+    private bool _canViewDiaryTypes;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -201,5 +212,6 @@
         _canViewPartnerTypes = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.PartnerTypes.View)).Succeeded;
         _canViewPartners = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Partners.View)).Succeeded;
         _canViewBookings = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Bookings.View)).Succeeded;
+        _canViewDiaryTypes = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.DiaryTypes.View)).Succeeded;
     }
 }
