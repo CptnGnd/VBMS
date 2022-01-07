@@ -1,14 +1,15 @@
-﻿using VBMS.Application.Features.BrandTests.Queries.GetAll;
-using VBMS.Shared.Wrapper;
+﻿using VBMS.Shared.Wrapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VBMS.Application.Features.BrandTests.Commands.AddEdit;
+using VBMS.Application.Features.vbms.booking.booking.Queries.GetAll;
+using VBMS.Application.Features.BrandTests.Queries.GetAll;
 
 namespace VBMS.Client.Infrastructure.Managers.Catalog.BrandTest
 {
     public interface IBrandTestManager : IManager
     {
-        Task<IResult<List<GetAllBrandsResponse>>> GetAllAsync();
+        Task<IResult<List<GetAllBrandTestsResponse>>> GetAllAsync();
 
         Task<IResult<int>> SaveAsync(AddEditBrandTestCommand request);
 

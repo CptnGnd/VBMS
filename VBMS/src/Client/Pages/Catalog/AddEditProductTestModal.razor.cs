@@ -1,8 +1,4 @@
-﻿using VBMS.Application.Features.BrandTests.Queries.GetAll;
-using VBMS.Application.Features.ProductTests.Commands.AddEdit;
-using VBMS.Application.Requests;
-using VBMS.Client.Extensions;
-using VBMS.Shared.Constants.Application;
+﻿using Blazored.FluentValidation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -12,9 +8,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Blazored.FluentValidation;
+using VBMS.Application.Features.BrandTests.Queries.GetAll;
+using VBMS.Application.Features.ProductTests.Commands.AddEdit;
+using VBMS.Application.Requests;
+using VBMS.Client.Extensions;
 using VBMS.Client.Infrastructure.Managers.Catalog.BrandTest;
 using VBMS.Client.Infrastructure.Managers.Catalog.ProductTest;
+using VBMS.Shared.Constants.Application;
 
 namespace VBMS.Client.Pages.Catalog
 {
@@ -29,7 +29,7 @@ namespace VBMS.Client.Pages.Catalog
 
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private List<GetAllBrandsResponse> _brandTests = new();
+        private List<GetAllBrandTestsResponse> _brandTests = new();
 
         public void Cancel()
         {

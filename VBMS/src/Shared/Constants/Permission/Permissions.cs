@@ -43,6 +43,16 @@ namespace VBMS.Shared.Constants.Permission
             public const string Search = "Permissions.Partners.Search";
         }
 
+        public static class Diarys
+        {
+            public const string View = "Permissions.Diarys.View";
+            public const string Create = "Permissions.Diarys.Create";
+            public const string Edit = "Permissions.Diarys.Edit";
+            public const string Delete = "Permissions.Diarys.Delete";
+            public const string Export = "Permissions.Diarys.Export";
+            public const string Search = "Permissions.Diarys.Search";
+        }
+
         public static class ProductTests
         {
             public const string View = "Permissions.ProductTests.View";

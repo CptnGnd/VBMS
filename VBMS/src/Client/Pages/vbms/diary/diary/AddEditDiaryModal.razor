@@ -1,0 +1,110 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditDiaryModal> _localizer
+
+<EditForm Model="@AddEditDiaryModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditDiaryModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Diary"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Diary"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @if (AddEditDiaryModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditDiaryModel.Id)" @bind-Value="AddEditDiaryModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditDiaryModel.StartDateTime)" @bind-Value="AddEditDiaryModel.StartDateTime" Label="@_localizer["StartDate"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditDiaryModel.EndDateTime)" @bind-Value="AddEditDiaryModel.EndDateTime" Label="@_localizer["EndDate"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Diary Type"]" For="@(() => AddEditDiaryModel.DiaryTypeId)"
+                    @bind-Value="AddEditDiaryModel.DiaryTypeId" ResetValueOnEmptyText="true" SearchFunc="@SearchDiaryTypes" Variant="Variant.Filled" 
+                    ToStringFunc="@(i => _diaryTypes.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem> 
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditDiaryModel.VehicleId)" @bind-Value="AddEditDiaryModel.VehicleId" Label="@_localizer["Rate"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditDiaryModel.BookingId)" @bind-Value="AddEditDiaryModel.VehicleId" Label="@_localizer["Rate"]" />
+                </MudItem>
+            @*    @if (AddEditDiaryModel.Id == 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField For="@(() => AddEditDiaryModel.Barcode)" @bind-Value="AddEditDiaryModel.Barcode" Label="@_localizer["Barcode"]" />
+                    </MudItem>
+                }
+                else
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditDiaryModel.Barcode)" @bind-Value="AddEditDiaryModel.Barcode" Label="@_localizer["Barcode"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudItem>
+                        <MudAvatar Image="@(AddEditDiaryModel.ImageDataURL)" Square="true" Style="height: auto; width: auto; max-height: 100%"> </MudAvatar>
+                    </MudItem>
+                    <MudItem>
+                        <InputFile id="fileInput" hidden OnChange="UploadFiles" />
+                        <div>
+                            <MudButton HtmlTag="label"
+                                       Variant="Variant.Text"
+                                       Color="Color.Primary"
+                                       Size="Size.Small"
+                                       StartIcon="@Icons.Filled.CloudUpload"
+                                       for="fileInput">
+                                @_localizer["Upload"]
+                            </MudButton>
+                            @if (!string.IsNullOrEmpty(AddEditDiaryModel.ImageDataURL))
+                            {
+                                <MudButton Variant="Variant.Text"
+                                           Color="Color.Info"
+                                           StartIcon="@Icons.Filled.RemoveRedEye"
+                                           Size="Size.Small"
+                                           Link="@(AddEditDiaryModel.ImageDataURL)" Target="_blank">
+                                    @_localizer["View"]
+                                </MudButton>
+                                <MudButton Variant="Variant.Text"
+                                           Color="Color.Error"
+                                           StartIcon="@Icons.Filled.Delete"
+                                           Size="Size.Small"
+                                           OnClick="DeleteAsync">
+                                    @_localizer["Delete"]
+                                </MudButton>
+                            }
+                        </div>
+                    </MudItem>
+                </MudItem>*@
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditDiaryModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using VBMS.Application.Features.BrandTests.Commands.AddEdit;
-using VBMS.Application.Features.BrandTests.Queries.GetAll;
 using VBMS.Application.Features.BrandTests.Queries.GetById;
+using VBMS.Application.Features.vbms.booking.booking.Queries.GetAll;
 using VBMS.Domain.Entities.Catalog;
 
 namespace VBMS.Application.Mappings
@@ -12,7 +12,7 @@ namespace VBMS.Application.Mappings
         {
             CreateMap<AddEditBrandTestCommand, BrandTest>().ReverseMap();
             CreateMap<GetBrandTestByIdResponse, BrandTest>().ReverseMap();
-            CreateMap<GetAllBrandsResponse, BrandTest>().ReverseMap();
+            CreateMap<GetAllBookingsResponse, BrandTest>().ReverseMap();
         }
     }
 }

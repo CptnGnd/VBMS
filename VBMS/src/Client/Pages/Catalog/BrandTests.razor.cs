@@ -1,5 +1,4 @@
-﻿using VBMS.Application.Features.BrandTests.Queries.GetAll;
-using VBMS.Client.Extensions;
+﻿using VBMS.Client.Extensions;
 using VBMS.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -14,6 +13,8 @@ using VBMS.Client.Infrastructure.Managers.Catalog.BrandTest;
 using VBMS.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
+using VBMS.Application.Features.vbms.booking.booking.Queries.GetAll;
+using VBMS.Application.Features.BrandTests.Queries.GetAll;
 
 namespace VBMS.Client.Pages.Catalog
 {
@@ -23,8 +24,8 @@ namespace VBMS.Client.Pages.Catalog
 
         [CascadingParameter] private HubConnection HubConnection { get; set; }
 
-        private List<GetAllBrandsResponse> _brandTestList = new();
-        private GetAllBrandsResponse _brandTest = new();
+        private List<GetAllBrandTestsResponse> _brandTestList = new();
+        private GetAllBrandTestsResponse _brandTest = new();
         private string _searchString = "";
         private bool _dense = true;
         private bool _striped = true;
@@ -154,11 +155,11 @@ namespace VBMS.Client.Pages.Catalog
 
         private async Task Reset()
         {
-            _brandTest = new GetAllBrandsResponse();
+            _brandTest = new GetAllBrandTestsResponse();
             await GetBrandTestsAsync();
         }
 
-        private bool Search(GetAllBrandsResponse brandTest)
+        private bool Search(GetAllBrandTestsResponse brandTest)
         {
             if (string.IsNullOrWhiteSpace(_searchString)) return true;
             if (brandTest.Name?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)

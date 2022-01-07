@@ -116,6 +116,12 @@
             <MudNavLink Href="/vbms/diaryTypes" Icon="@Icons.Material.Outlined.CallToAction">
                 @_localizer["Diary Types"]
             </MudNavLink>
+        }    
+        @if (_canViewDiaryTypes)
+        {
+            <MudNavLink Href="/vbms/diarys" Icon="@Icons.Material.Outlined.CallToAction">
+                @_localizer["Diarys"]
+            </MudNavLink>
         }  
     }
     @if (_canViewBookings )

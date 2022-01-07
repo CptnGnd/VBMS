@@ -481,6 +481,37 @@
             <param name="searchString"></param>
             <returns></returns>
         </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.diary.DiarysController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Diarys
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.diary.DiarysController.Post(VBMS.Application.Features.vbms.diary.diary.Commands.AddEdit.AddEditDiaryCommand)">
+            <summary>
+            Add/Edit a Diary
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.diary.DiarysController.Delete(System.Int32)">
+            <summary>
+            Delete a Diary
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:VBMS.Server.Controllers.v1.vbms.diary.DiarysController.Export(System.String)">
+            <summary>
+            Search Diarys and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
         <member name="M:VBMS.Server.Controllers.v1.vbms.partners.PartnersController.GetAll(System.Int32,System.Int32,System.String,System.String)">
             <summary>
             Get All Partners

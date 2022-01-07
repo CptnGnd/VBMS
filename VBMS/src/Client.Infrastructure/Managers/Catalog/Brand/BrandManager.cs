@@ -1,11 +1,11 @@
-﻿using VBMS.Application.Features.BrandTests.Queries.GetAll;
-using VBMS.Client.Infrastructure.Extensions;
-using VBMS.Shared.Wrapper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using VBMS.Application.Features.BrandTests.Commands.AddEdit;
+using VBMS.Application.Features.BrandTests.Queries.GetAll;
+using VBMS.Client.Infrastructure.Extensions;
+using VBMS.Shared.Wrapper;
 
 namespace VBMS.Client.Infrastructure.Managers.Catalog.BrandTest
 {
@@ -32,10 +32,10 @@ namespace VBMS.Client.Infrastructure.Managers.Catalog.BrandTest
             return await response.ToResult<int>();
         }
 
-        public async Task<IResult<List<GetAllBrandsResponse>>> GetAllAsync()
+        public async Task<IResult<List<GetAllBrandTestsResponse>>> GetAllAsync()
         {
             var response = await _httpClient.GetAsync(Routes.BrandTestsEndpoints.GetAll);
-            return await response.ToResult<List<GetAllBrandsResponse>>();
+            return await response.ToResult<List<GetAllBrandTestsResponse>>();
         }
 
         public async Task<IResult<int>> SaveAsync(AddEditBrandTestCommand request)

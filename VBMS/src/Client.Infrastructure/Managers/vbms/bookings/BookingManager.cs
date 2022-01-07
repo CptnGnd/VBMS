@@ -1,7 +1,9 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using VBMS.Application.Features.vbms.booking.booking.Commands.AddEdit;
+using VBMS.Application.Features.vbms.booking.booking.Queries.GetAll;
 using VBMS.Application.Features.vbms.booking.booking.Queries.GetAllPaged;
 using VBMS.Application.Requests.vbms.booking;
 using VBMS.Client.Infrastructure.Extensions;
@@ -30,6 +32,12 @@ namespace VBMS.Client.Infrastructure.Managers.vbms.bookings
                 ? Routes.BookingsEndpoints.Export
                 : Routes.BookingsEndpoints.ExportFiltered(searchString));
             return await response.ToResult<string>();
+        }
+
+        public async Task<IResult<List<GetAllBookingsResponse>>> GetAllAsync()
+        {
+            var response = await _httpClient.GetAsync(Routes.BookingsEndpoints.GetAll);
+            return await response.ToResult<List<GetAllBookingsResponse>>();
         }
 
         public async Task<IResult<string>> GetBookingImageAsync(int id)
