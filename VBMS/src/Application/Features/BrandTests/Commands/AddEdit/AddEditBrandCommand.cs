@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using AutoMapper;
-using VBMS.Application.Interfaces.Repositories;
-using VBMS.Domain.Entities.Catalog;
-using VBMS.Shared.Wrapper;
+﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Localization;
+using VBMS.Application.Interfaces.Repositories;
+using VBMS.Domain.Entities.Catalog;
 using VBMS.Shared.Constants.Application;
+using VBMS.Shared.Wrapper;
 
 namespace VBMS.Application.Features.BrandTests.Commands.AddEdit
 {

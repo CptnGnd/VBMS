@@ -28,14 +28,14 @@ namespace VBMS.Application.Features.vbms.diary.diaryType.Commands.AddEdit
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork<int> _unitOfWork;
-        private readonly IUploadService _uploadService;
+      //  private readonly IUploadService _uploadService;
         private readonly IStringLocalizer<AddEditDiaryTypeCommandHandler> _localizer;
 
-        public AddEditDiaryTypeCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditDiaryTypeCommandHandler> localizer)
+        public AddEditDiaryTypeCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper,/* IUploadService uploadService,*/ IStringLocalizer<AddEditDiaryTypeCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _uploadService = uploadService;
+         //   _uploadService = uploadService;
             _localizer = localizer;
         }
 
