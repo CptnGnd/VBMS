@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using VBMS.Application.Features.vbms.booking.booking.Queries.GetAll;
 using VBMS.Application.Features.vbms.diary.diary.Commands.AddEdit;
 using VBMS.Application.Features.vbms.diary.diaryType.Queries.GetAll;
+using VBMS.Application.Features.vbms.vehicle.vehicle.Queries.GetAll;
 using VBMS.Client.Extensions;
 using VBMS.Client.Infrastructure.Managers.Catalog.BrandTest;
 using VBMS.Client.Infrastructure.Managers.Catalog.Diary;
@@ -23,7 +24,7 @@ namespace VBMS.Client.Pages.vbms.diary.diary
     {
         [Inject] private IDiaryManager DiaryManager { get; set; }
         [Inject] private IBookingManager BookingManager { get; set; }
-      //  [Inject] private IVehicleManager VehicleManager { get; set; }
+        [Inject] private IVehicleManager VehicleManager { get; set; }
         [Inject] private IDiaryTypeManager DiaryTypeManager { get; set; }
 
         [Parameter] public AddEditDiaryCommand AddEditDiaryModel { get; set; } = new();
@@ -33,7 +34,7 @@ namespace VBMS.Client.Pages.vbms.diary.diary
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
         private List<GetAllBookingsResponse> _bookings = new();
-       // private List<GetAllVehiclesResponse> _vehicles = new();
+        private List<GetAllVehiclesResponse> _vehicles = new();
         private List<GetAllDiaryTypesResponse> _diaryTypes = new();
 
         public void Cancel()
@@ -71,7 +72,7 @@ namespace VBMS.Client.Pages.vbms.diary.diary
 
         private async Task LoadDataAsync()
         {
-           // await LoadImageAsync();
+            await LoadVehiclesAsync();
             await LoadBookingsAsync();
             await LoadDiaryTypesAsync();
         }
@@ -92,43 +93,15 @@ namespace VBMS.Client.Pages.vbms.diary.diary
                 _bookings = data.Data;
             }
         }
-
-        //private async Task LoadImageAsync()
-        //{
-        //    var data = await DiaryManager.GetDiaryImageAsync(AddEditDiaryModel.Id);
-        //    if (data.Succeeded)
-        //    {
-        //        var imageData = data.Data;
-        //        if (!string.IsNullOrEmpty(imageData))
-        //        {
-        //            AddEditDiaryModel.ImageDataURL = imageData;
-        //        }
-        //    }
-        //}
-
-        //private void DeleteAsync()
-        //{
-        //    AddEditDiaryModel.ImageDataURL = null;
-        //    AddEditDiaryModel.UploadRequest = new UploadRequest();
-        //}
-
-        //private IBrowserFile _file;
-
-        //private async Task UploadFiles(InputFileChangeEventArgs e)
-        //{
-        //    _file = e.File;
-        //    if (_file != null)
-        //    {
-        //        var extension = Path.GetExtension(_file.Name);
-        //        var format = "image/png";
-        //        var imageFile = await e.File.RequestImageFileAsync(format, 400, 400);
-        //        var buffer = new byte[imageFile.Size];
-        //        await imageFile.OpenReadStream().ReadAsync(buffer);
-        //        AddEditDiaryModel.ImageDataURL = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-        //        AddEditDiaryModel.UploadRequest = new UploadRequest { Data = buffer, UploadType = Application.Enums.UploadType.Diary, Extension = extension };
-        //    }
-        //}
-
+        private async Task LoadVehiclesAsync()
+        {
+            var data = await VehicleManager.GetAllAsync();
+            if (data.Succeeded)
+            {
+                _vehicles = data.Data;
+            }
+        }
+    
         private async Task<IEnumerable<int>> SearchDiaryTypes(string value)
         {
             // In real life use an asynchronous function for fetching data from an api.
@@ -139,6 +112,30 @@ namespace VBMS.Client.Pages.vbms.diary.diary
                 return _diaryTypes.Select(x => x.Id);
 
             return _diaryTypes.Where(x => x.Name.Contains(value, StringComparison.InvariantCultureIgnoreCase))
+                .Select(x => x.Id);
+        }
+        private async Task<IEnumerable<int>> SearchBookings(string value)
+        {
+            // In real life use an asynchronous function for fetching data from an api.
+            await Task.Delay(5);
+
+            // if text is null or empty, show complete list
+            if (string.IsNullOrEmpty(value))
+                return _bookings.Select(x => x.Id);
+
+            return _bookings.Where(x => x.BookingCode.Contains(value, StringComparison.InvariantCultureIgnoreCase))
+                .Select(x => x.Id);
+        }
+        private async Task<IEnumerable<int>> SearchVehicles(string value)
+        {
+            // In real life use an asynchronous function for fetching data from an api.
+            await Task.Delay(5);
+
+            // if text is null or empty, show complete list
+            if (string.IsNullOrEmpty(value))
+                return _vehicles.Select(x => x.Id);
+
+            return _vehicles.Where(x => x.Rego.Contains(value, StringComparison.InvariantCultureIgnoreCase))
                 .Select(x => x.Id);
         }
     }

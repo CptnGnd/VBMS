@@ -7,6 +7,8 @@ using VBMS.Application.Features.vbms.vehicle.vehicle.Queries.GetAllPaged;
 using VBMS.Application.Requests.vbms.vehicle;
 using VBMS.Application.Features.vbms.vehicle.vehicle.Commands.AddEdit;
 using VBMS.Client.Infrastructure.Managers.Catalog.Vehicle;
+using System.Collections.Generic;
+using VBMS.Application.Features.vbms.vehicle.vehicle.Queries.GetAll;
 
 namespace VBMS.Client.Infrastructure.Managers.vbms.vehicle.vehicle
 {
@@ -31,6 +33,12 @@ namespace VBMS.Client.Infrastructure.Managers.vbms.vehicle.vehicle
                 ? Routes.VehiclesEndpoints.Export
                 : Routes.VehiclesEndpoints.ExportFiltered(searchString));
             return await response.ToResult<string>();
+        }
+
+        public async Task<IResult<List<GetAllVehiclesResponse>>> GetAllAsync()
+        {
+            var response = await _httpClient.GetAsync(Routes.VehiclesEndpoints.GetAll);
+            return await response.ToResult<List<GetAllVehiclesResponse>>();
         }
 
         public async Task<IResult<string>> GetVehicleImageAsync(int id)

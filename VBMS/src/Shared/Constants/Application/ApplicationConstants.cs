@@ -30,6 +30,7 @@
             public const string GetAllPartnersCacheKey = "all-partners";
             public const string GetAllDiaryTypesCacheKey = "all-diaryTypes";
             public const string GetAllBookingsCacheKey = "all-bookings";
+            public const string GetAllVehiclesCacheKey = "all-vehicles";
 
             public static string GetAllEntityExtendedAttributesCacheKey(string entityFullName)
             {

@@ -5,6 +5,7 @@ using VBMS.Application.Features.vbms.booking.booking.Commands.AddEdit;
 using VBMS.Application.Features.vbms.booking.booking.Commands.Delete;
 using VBMS.Application.Features.vbms.booking.booking.Queries.Export;
 using VBMS.Application.Features.vbms.booking.booking.Queries.GetAllPaged;
+using VBMS.Application.Features.vbms.booking.booking.Queries.GetById;
 using VBMS.Shared.Constants.Permission;
 
 namespace VBMS.Server.Controllers.v1.Catalog
@@ -27,6 +28,18 @@ namespace VBMS.Server.Controllers.v1.Catalog
             return Ok(bookings);
         }
 
+        /// <summary>
+        /// Get a PartnerType By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status 200 Ok</returns>
+        [Authorize(Policy = Permissions.Bookings.View)]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var Booking = await _mediator.Send(new GetBookingByIdQuery() { Id = id });
+            return Ok(Booking);
+        }
         ///// <summary>
         ///// Get a Booking Image by Id
         ///// </summary>

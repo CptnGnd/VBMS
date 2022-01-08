@@ -420,6 +420,13 @@
             <param name="orderBy"></param>
             <returns>Status 200 OK</returns>
         </member>
+        <member name="M:VBMS.Server.Controllers.v1.Catalog.BookingsController.GetById(System.Int32)">
+            <summary>
+            Get a PartnerType By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
         <member name="M:VBMS.Server.Controllers.v1.Catalog.BookingsController.Post(VBMS.Application.Features.vbms.booking.booking.Commands.AddEdit.AddEditBookingCommand)">
             <summary>
             Add/Edit a Booking

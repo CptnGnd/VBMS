@@ -13,6 +13,8 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using VBMS.Domain.Entities.vbms.diary;
 using System;
+using VBMS.Application.Features.vbms.booking.booking.Queries.GetById;
+using VBMS.Domain.Entities.vbms.bookings;
 
 namespace VBMS.Application.Features.vbms.diary.diary.Commands.AddEdit
 {
@@ -45,6 +47,15 @@ namespace VBMS.Application.Features.vbms.diary.diary.Commands.AddEdit
 
         public async Task<Result<int>> Handle(AddEditDiaryCommand command, CancellationToken cancellationToken)
         {
+            if (command.BookingId != 0)
+            {
+                var booking = await _unitOfWork.Repository<Booking>().GetByIdAsync(command.BookingId);
+                if (booking != null)
+                {
+                    command.StartDateTime = booking.StartDate;
+                    command.EndDateTime = booking.EndDate;
+                }
+            }
             if (await _unitOfWork.Repository<Diary>().Entities.Where(p => p.Id != command.Id)
                 .AnyAsync(p => p.VehicleId == command.VehicleId && p.StartDateTime <= command.EndDateTime && p.EndDateTime >= command.StartDateTime, cancellationToken))
             {

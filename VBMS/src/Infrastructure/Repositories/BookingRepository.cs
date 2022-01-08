@@ -19,7 +19,7 @@ namespace VBMS.Infrastructure.Repositories
             return await _repository.Entities.AnyAsync(b => b.PartnerId == partnerId);
         }
 
-        public async Task<bool> IsVehbicleTypeUsed(int vehicleTypeId)
+        public async Task<bool> IsVehicleTypeUsed(int vehicleTypeId)
         {
             return await _repository.Entities.AnyAsync(b => b.VehicleTypeId == vehicleTypeId);
         }

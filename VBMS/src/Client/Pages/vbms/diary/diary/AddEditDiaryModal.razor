@@ -39,6 +39,16 @@
                     <MudAutocomplete T="int" Label="@_localizer["Diary Type"]" For="@(() => AddEditDiaryModel.DiaryTypeId)"
                     @bind-Value="AddEditDiaryModel.DiaryTypeId" ResetValueOnEmptyText="true" SearchFunc="@SearchDiaryTypes" Variant="Variant.Filled" 
                     ToStringFunc="@(i => _diaryTypes.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
+                </MudItem>     
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Vehicle"]" For="@(() => AddEditDiaryModel.VehicleId)"
+                    @bind-Value="AddEditDiaryModel.VehicleId" ResetValueOnEmptyText="true" SearchFunc="@SearchVehicles" Variant="Variant.Filled" 
+                    ToStringFunc="@(i => _vehicles.FirstOrDefault(b => b.Id == i)?.Rego ?? string.Empty)" OffsetY="true" />
+                </MudItem>     
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Diary Type"]" For="@(() => AddEditDiaryModel.BookingId)"
+                    @bind-Value="AddEditDiaryModel.BookingId" ResetValueOnEmptyText="true" SearchFunc="@SearchBookings" Variant="Variant.Filled" 
+                    ToStringFunc="@(i => _bookings.FirstOrDefault(b => b.Id == i)?.BookingCode ?? string.Empty)" OffsetY="true" />
                 </MudItem> 
                 <MudItem xs="12" md="6">
                     <MudTextField For="@(() => AddEditDiaryModel.VehicleId)" @bind-Value="AddEditDiaryModel.VehicleId" Label="@_localizer["Rate"]" />

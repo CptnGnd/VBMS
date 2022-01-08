@@ -4,7 +4,7 @@ namespace VBMS.Application.Interfaces.Repositories
 {
     public interface IBookingRepository
     {
-        Task<bool> IsVehbicleTypeUsed(int vehicleTypeId);
+        Task<bool> IsVehicleTypeUsed(int vehicleTypeId);
         Task<bool> IsPartnerUsed(int partnerId);
     }
 }

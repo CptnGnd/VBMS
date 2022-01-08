@@ -30,6 +30,8 @@ namespace VBMS.Client.Infrastructure.Routes
             return $"{Export}?searchString={searchString}";
         }
 
+
+        public static string GetAll = "api/v1/vehicles";
         public static string Save = "api/v1/vehicles";
         public static string Delete = "api/v1/vehicles";
         public static string Export = "api/v1/vehicles/export";
