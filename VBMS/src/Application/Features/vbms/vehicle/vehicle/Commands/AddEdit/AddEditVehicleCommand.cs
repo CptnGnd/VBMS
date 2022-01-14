@@ -12,6 +12,8 @@ using Microsoft.Extensions.Localization;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using VBMS.Domain.Entities.vbms.vehicles;
+using VBMS.Domain.Entities.vbms.diary;
+using System;
 
 namespace VBMS.Application.Features.vbms.vehicle.vehicle.Commands.AddEdit
 {
@@ -48,7 +50,7 @@ namespace VBMS.Application.Features.vbms.vehicle.vehicle.Commands.AddEdit
             if (await _unitOfWork.Repository<Vehicle>().Entities.Where(p => p.Id != command.Id)
                 .AnyAsync(p => p.Rego == command.Rego, cancellationToken))
             {
-                return await Result<int>.FailAsync(_localizer["Barcode already exists."]);
+                return await Result<int>.FailAsync(_localizer["Vehicle with Rego already exists."]);
             }
 
             var uploadRequest = command.UploadRequest;
@@ -56,33 +58,42 @@ namespace VBMS.Application.Features.vbms.vehicle.vehicle.Commands.AddEdit
             {
                 uploadRequest.FileName = $"P-{command.Rego}{uploadRequest.Extension}";
             }
-
             if (command.Id == 0)
             {
-                var productTest = _mapper.Map<Vehicle>(command);
+                var vehicle = _mapper.Map<Vehicle>(command);
+                Diary diary = new();
                 if (uploadRequest != null)
                 {
-                    productTest.ImageDataURL = _uploadService.UploadAsync(uploadRequest);
+                    vehicle.ImageDataURL = _uploadService.UploadAsync(uploadRequest);
                 }
-                await _unitOfWork.Repository<Vehicle>().AddAsync(productTest);
+                await _unitOfWork.Repository<Vehicle>().AddAsync(vehicle);
                 await _unitOfWork.Commit(cancellationToken);
-                return await Result<int>.SuccessAsync(productTest.Id, _localizer["Vehicle Saved"]);
+                diary.Id = 0;
+                diary.DiaryTypeId = 1;
+                diary.VehicleId = vehicle.Id;
+                diary.StartDateTime = DateTime.Now;
+                diary.EndDateTime = DateTime.MaxValue;
+                diary.BookingId = null;
+                diary.CreatedBy = vehicle.CreatedBy;
+                await _unitOfWork.Repository<Diary>().AddAsync(diary);
+                await _unitOfWork.Commit(cancellationToken);
+                return await Result<int>.SuccessAsync(vehicle.Id, _localizer["Vehicle Saved"]);
             }
             else
             {
-                var productTest = await _unitOfWork.Repository<Vehicle>().GetByIdAsync(command.Id);
-                if (productTest != null)
+                var vehicle = await _unitOfWork.Repository<Vehicle>().GetByIdAsync(command.Id);
+                if (vehicle != null)
                 {
-                    productTest.Rego = command.Rego ?? productTest.Rego;
-                    productTest.Description = command.Description ?? productTest.Description;
+                    vehicle.Rego = command.Rego ?? vehicle.Rego;
+                    vehicle.Description = command.Description ?? vehicle.Description;
                     if (uploadRequest != null)
                     {
-                        productTest.ImageDataURL = _uploadService.UploadAsync(uploadRequest);
+                        vehicle.ImageDataURL = _uploadService.UploadAsync(uploadRequest);
                     }
-                    productTest.VehicleTypeId = command.VehicleTypeId == 0 ? productTest.VehicleTypeId : command.VehicleTypeId;
-                    await _unitOfWork.Repository<Vehicle>().UpdateAsync(productTest);
+                    vehicle.VehicleTypeId = command.VehicleTypeId == 0 ? vehicle.VehicleTypeId : command.VehicleTypeId;
+                    await _unitOfWork.Repository<Vehicle>().UpdateAsync(vehicle);
                     await _unitOfWork.Commit(cancellationToken);
-                    return await Result<int>.SuccessAsync(productTest.Id, _localizer["Vehicle Updated"]);
+                    return await Result<int>.SuccessAsync(vehicle.Id, _localizer["Vehicle Updated"]);
                 }
                 else
                 {

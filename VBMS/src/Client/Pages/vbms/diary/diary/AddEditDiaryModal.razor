@@ -45,18 +45,18 @@
                     @bind-Value="AddEditDiaryModel.VehicleId" ResetValueOnEmptyText="true" SearchFunc="@SearchVehicles" Variant="Variant.Filled" 
                     ToStringFunc="@(i => _vehicles.FirstOrDefault(b => b.Id == i)?.Rego ?? string.Empty)" OffsetY="true" />
                 </MudItem>     
-                <MudItem xs="12" md="6">
-                    <MudAutocomplete T="int" Label="@_localizer["Diary Type"]" For="@(() => AddEditDiaryModel.BookingId)"
-                    @bind-Value="AddEditDiaryModel.BookingId" ResetValueOnEmptyText="true" SearchFunc="@SearchBookings" Variant="Variant.Filled" 
-                    ToStringFunc="@(i => _bookings.FirstOrDefault(b => b.Id == i)?.BookingCode ?? string.Empty)" OffsetY="true" />
-                </MudItem> 
+            @*    <MudItem xs="12" md="6">
+                    <MudAutocomplete T="int" Label="@_localizer["Booking"]" For="@(() => AddEditDiaryModel.BookingId==null?0:(int)AddEditDiaryModel.BookingId)"
+                    @bind-Value="(int)AddEditDiaryModel.BookingId" ResetValueOnEmptyText="true" SearchFunc="@SearchBookings" 
+                    Variant="Variant.Filled" ToStringFunc="@(i => _bookings.FirstOrDefault(b => b.Id == i)?.BookingCode ?? string.Empty)" OffsetY="true" />
+                </MudItem>  *@
                 <MudItem xs="12" md="6">
                     <MudTextField For="@(() => AddEditDiaryModel.VehicleId)" @bind-Value="AddEditDiaryModel.VehicleId" Label="@_localizer["Rate"]" />
                 </MudItem>
-                <MudItem xs="12" md="6">
+             @*   <MudItem xs="12" md="6">
                     <MudTextField For="@(() => AddEditDiaryModel.BookingId)" @bind-Value="AddEditDiaryModel.VehicleId" Label="@_localizer["Rate"]" />
                 </MudItem>
-            @*    @if (AddEditDiaryModel.Id == 0)
+                @if (AddEditDiaryModel.Id == 0)
                 {
                     <MudItem xs="12" md="6">
                         <MudTextField For="@(() => AddEditDiaryModel.Barcode)" @bind-Value="AddEditDiaryModel.Barcode" Label="@_localizer["Barcode"]" />

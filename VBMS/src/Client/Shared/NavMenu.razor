@@ -3,6 +3,7 @@
 
 <UserCard />
 <MudNavMenu>
+    <MudNavGroup Title="Administration" Expanded=false>
     <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">@_localizer["Home"]</MudNavLink>
     @if (_canViewHangfire)
     {
@@ -70,6 +71,7 @@
             @_localizer["Chat"]
         </MudNavLink>
     }
+    </MudNavGroup>
       @if (_canViewPartnerTypes || _canViewPartners)
     {
         <MudListSubheader Class="mt-2 mb-n2">@_localizer["Partner Management"]</MudListSubheader>

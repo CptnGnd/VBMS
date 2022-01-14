@@ -11,7 +11,7 @@ namespace VBMS.Application.Features.vbms.diary.diary.Queries.GetAllPaged
         public string Vehicle { get; set; }
         public int DiaryTypeId { get; set; }
         public string DiaryType { get; set; }
-        public int BookingId { get; set; }
+        public int? BookingId { get; set; }
         public string Booking { get; set; }
     }
 }

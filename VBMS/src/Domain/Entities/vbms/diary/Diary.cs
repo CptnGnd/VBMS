@@ -9,7 +9,7 @@ namespace VBMS.Domain.Entities.vbms.diary
     {
         public int VehicleId { get; set; }
         public virtual Vehicle Vehicle { get; set;}
-        public int BookingId { get; set; } = 0;
+        public int? BookingId { get; set; } = 0;
         public virtual Booking Booking { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }

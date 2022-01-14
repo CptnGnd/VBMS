@@ -25,7 +25,7 @@ namespace VBMS.Application.Features.vbms.diary.diary.Commands.AddEdit
         public DateTime StartDateTime { get; set; }
         [Required]
         public DateTime EndDateTime { get; set; }
-        public int BookingId { get; set; }
+        public int? BookingId { get; set; }
         [Required]
         public int VehicleId { get; set; }
         [Required]
@@ -47,20 +47,53 @@ namespace VBMS.Application.Features.vbms.diary.diary.Commands.AddEdit
 
         public async Task<Result<int>> Handle(AddEditDiaryCommand command, CancellationToken cancellationToken)
         {
-            if (command.BookingId != 0)
+            if (command.BookingId != null)
             {
-                var booking = await _unitOfWork.Repository<Booking>().GetByIdAsync(command.BookingId);
+                var booking = await _unitOfWork.Repository<Booking>().GetByIdAsync(command.BookingId==null?0:(int)command.BookingId);
                 if (booking != null)
                 {
                     command.StartDateTime = booking.StartDate;
                     command.EndDateTime = booking.EndDate;
                 }
             }
-            if (await _unitOfWork.Repository<Diary>().Entities.Where(p => p.Id != command.Id)
-                .AnyAsync(p => p.VehicleId == command.VehicleId && p.StartDateTime <= command.EndDateTime && p.EndDateTime >= command.StartDateTime, cancellationToken))
+            var involvedDiares = await _unitOfWork.Repository<Diary>().Entities.Where(p => p.VehicleId == command.VehicleId && p.StartDateTime <= command.EndDateTime
+                           && p.EndDateTime >= command.StartDateTime).ToListAsync();
+            foreach (var involvedDiary in involvedDiares) 
             {
-                return await Result<int>.FailAsync(_localizer["Diary Redcords may not Overlap"]);
+                if (involvedDiary.StartDateTime < command.StartDateTime)
+                {
+                    if (involvedDiary.Id != command.Id)
+                    {
+                        if (involvedDiary.EndDateTime > command.EndDateTime)
+                        {
+                            AddEditDiaryCommand endDiary = new AddEditDiaryCommand
+                            {
+                                StartDateTime = command.EndDateTime.AddSeconds(1),
+                                EndDateTime = involvedDiary.EndDateTime,
+                                VehicleId = involvedDiary.VehicleId,
+                                DiaryTypeId = involvedDiary.DiaryTypeId,
+                                BookingId = null,
+                                Id = 0
+                            };
+                            var thisdiary = _mapper.Map<Diary>(endDiary);
+                            await _unitOfWork.Repository<Diary>().AddAsync(thisdiary);
+                        }
+                        involvedDiary.EndDateTime = command.StartDateTime.AddSeconds(-1);
+                        involvedDiary.BookingId = null;
+                    }
+                    else
+                    {
+                        var k = _unitOfWork.Repository<Diary>().Entities
+                                           .Where(p => p.VehicleId == command.VehicleId && p.EndDateTime == command.StartDateTime.AddSeconds(-1));
+                    }
+                    await _unitOfWork.Repository<Diary>().UpdateAsync(involvedDiary);
+                }
             }
+            //if (await _unitOfWork.Repository<Diary>().Entities.Where(p => p.Id != command.Id)
+            //    .AnyAsync(p => p.VehicleId == command.VehicleId && p.StartDateTime <= command.EndDateTime && p.EndDateTime >= command.StartDateTime, cancellationToken))
+            //{
+            //    return await Result<int>.FailAsync(_localizer["Diary Redcords may not Overlap"]);
+            //}
 
 
             if (command.Id == 0)
@@ -80,8 +113,8 @@ namespace VBMS.Application.Features.vbms.diary.diary.Commands.AddEdit
                     diary.EndDateTime = command.EndDateTime;
 
                     diary.BookingId = command.BookingId == 0 ? diary.BookingId : command.BookingId;
-                    diary.BookingId = command.VehicleId == 0 ? diary.DiaryTypeId : command.DiaryTypeId;
-                    diary.BookingId = command.DiaryTypeId == 0 ? diary.DiaryTypeId : command.DiaryTypeId;
+                    diary.VehicleId = command.VehicleId == 0 ? diary.VehicleId : command.VehicleId;
+                    diary.DiaryTypeId = command.DiaryTypeId == 0 ? diary.DiaryTypeId : command.DiaryTypeId;
                     await _unitOfWork.Repository<Diary>().UpdateAsync(diary);
                     await _unitOfWork.Commit(cancellationToken);
                     return await Result<int>.SuccessAsync(diary.Id, _localizer["Diary Updated"]);
